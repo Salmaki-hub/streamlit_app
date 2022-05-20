@@ -124,6 +124,24 @@ cat = ['apple pie',
          'tuna tartare',
          'waffles']
 
+cat17 = ['apple pie',
+         'cheesecake',
+         'chicken curry',
+         'chicken quesadilla',
+         'chicken wings',
+         'chocolate cake',
+         'chocolate mousse',
+         'churros',
+         'club sandwich',
+         'donuts',
+         'french fries',
+         'french toast',
+         'fried rice',
+         'hamburger',
+         'hot and sour soup',
+         'ice cream',
+         'pizza']
+
 def prediction(image, model):
     test_image = image.resize((224,224))
     test_image = preprocessing.image.img_to_array(test_image)
@@ -131,14 +149,14 @@ def prediction(image, model):
     test_image = np.expand_dims(test_image, axis=0)
     result=model.predict(test_image)
     result=np.argmax(result)
-    Pred=cat[result]
+    Pred=cat17[result]
     return Pred
 
 
 
 if file is not None:
     img = Image.open(file)
-    model = tf.keras.models.load_model("my_model.h5")
+    model = tf.keras.models.load_model("my_model_17_classes.h5")
     img_jpeg = img.convert('RGB')
     pred = prediction(img_jpeg, model)
     #score = tf.nn.softmax(prediction[0])
